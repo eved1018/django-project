@@ -26,4 +26,12 @@ def Results():
         keyi = f"{key}"
         context[keyi] = data_total
     print(context)
-Results()
+# Results()
+def test():
+    strings = [ "1ACB.E", "1ACB_I"]
+    for i in strings:
+        if "_" in i:
+            
+        else:
+            print(i)
+test()
