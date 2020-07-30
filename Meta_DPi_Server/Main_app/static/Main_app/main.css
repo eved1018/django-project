@@ -13,11 +13,11 @@ body {
   }
   
   .bg-steel {
-    background-color: #000000;
+    background-color:#5c8078;
   }
   
   .site-header .navbar-nav .nav-link  {
-    color: #CD5C5C;
+    color: #fbbe00;
   }
   
   .site-header .navbar-nav .nav-link:hover {
