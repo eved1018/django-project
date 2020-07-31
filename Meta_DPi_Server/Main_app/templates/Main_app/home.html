@@ -8,9 +8,18 @@
             {{ form }}
             
           </div>
-       
         <input class="btn btn-primary mr-sm-2" type="submit" value="Submit">
     </form>
+    <form method="post" enctype="multipart/form-data"class="form-inline">
+        <div class="form-group mr-sm-4">
+            <label class="mr-sm-2" for="pdbform">PDB Input</label>
+            {% csrf_token %}
+            {{form2 }}
+        </div>
+        <input class="btn btn-primary mr-sm-2" type="submit" value="Submit">
+    </form>
+    
+     
     {{ message }}
 
 {% endblock content%}

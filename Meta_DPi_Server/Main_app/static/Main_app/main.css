@@ -31,6 +31,8 @@ body {
   }
   .btn-primary {
     background-color: #fa5405;
+    outline-color: #fa5405;
+    border-color: #fa5405 ;
   }
   .btn-primary:hover{
     background-color: #043464
