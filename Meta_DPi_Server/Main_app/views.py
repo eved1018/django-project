@@ -25,16 +25,17 @@ def handle_uploaded_file(datafile):
 def predition_score_get():
     # this is where we will get the three prediction scores and combine them into a dataframe with residue as index  
     pass
+
 def Meta_DPI():
     # this will take in the dataframe of the three predictiors and perform the Logreg and RF 
     # I (evan) will do this 
     pass
 
 def Meta_DPI_Setup(pdb,chain):
-    # this is where we will do the RF/Logreg data and return the resulst to the results page 
-    # as well as run the ROC and return the ROC figure 
+    # this is where we call the functions to perfrom data collection and RF/Logreg
     predition_score_get()
     Meta_DPI()
+    # this is where we will prepare the results for output. 
     results = pd.DataFrame()
     results["col1"] = ["1","2",'3']
     results["col2"] = ["1","2",'3']
