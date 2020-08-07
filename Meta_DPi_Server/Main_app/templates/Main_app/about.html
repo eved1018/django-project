@@ -1,75 +1,69 @@
 {% extends "Main_app/base.html"%}
 {% block content%}
-    <h1 style="text-align: center;">Who we are what we do</h1>
-<body>
-    <div class="container"></div>
-        <div class='row'>
-            <div class ='col-sm-4'>
-                <div class='placeBox'>
-                    <div class='imgBx '>
-                        <img src="https://github.com/eved1018/django-projects/blob/master/Meta_DPi_Server/Main_app/images/Main_app/Rajiimage.jpg?raw=true" alt="Rajiimage.jpg" class='img-thumbnail'>
-                    </div>
-                    <div class='content'>
-                        <h3> Name <br><span>Position</span></h3>
-                        <p>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                              Read More
-                            </button>
-                          </p>
-                          <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                            </div>
-                          </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class ='col-sm-4'>
-                <div class='placeBox'>
-                    <div class='imgBx '>
-                        <img src="https://github.com/eved1018/django-projects/blob/master/Meta_DPi_Server/Main_app/images/Main_app/evanframe2up.png?raw=true" alt="evanimage.jpg"class='img-thumbnail'>
-                    </div>
-                    <div class='content'>
-                        <h3> Name <br><span>Position</span></h3>
-                        <p>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                              Read More
-                            </button>
-                          </p>
-                          <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                            </div>
-                          </div>
-                          
-                    </div>
-                </div>
-            </div>
-            <div class ='col-sm-4'>
-                <div class='placeBox'>
-                    <div class='imgBx '>
-                        <img src="" alt="img fluid">
-                    </div>
-                    <div class='content'>
-                        <h3> Name <br><span>Position</span></h3>
-                        <p>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                              Read More
-                            </button>
-                          </p>
-                          <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                            </div>
-                          </div>
-                          
-                    </div>
+<!-- Header -->
+<header>
+    <div class='jumbotron jumbotron-fluid height25p banner' style=" background-color: #fa53055b; !important">
+        <div class='container 10p'>
+            <div class='contentBox h10 text-center'>
+                <div>
+                    <h1>MetaDPI WebServer</h1>
+                    <p class='text-center'>
+                        Meet The Team
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-</body>
 
+    </div>
+</header>
+  
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <!-- Team Member 1 -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="https://github.com/eved1018/django-projects/blob/master/Meta_DPi_Server/Main_app/images/Main_app/Rajiimage.jpg?raw=true" class="card-img-top" alt="..." style="width:500; height:350;">
+          <div class="card-body text-center"> 
+            <h5 class="card-title mb-0">Dr. Raji Viswanathan </h5>
+            <div class="card-text text-black-50">Professor of Chemistry; Co-Chair, Department of Chemistry</div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 2 -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Mordichia Walder</h5>
+            <div class="card-text text-black-50">Graduate Researcher</div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="https://github.com/eved1018/django-projects/blob/master/Meta_DPi_Server/Main_app/images/Main_app/IMG_2528.JPG?raw=true" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Evan Edelstein </h5>
+            <div class="card-text text-black-50">Student Researcher</div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 4 -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="https://source.unsplash.com/ZI6p3i9SbVU/500x350" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Shahar Lazeres</h5>
+            <div class="card-text text-black-50">Student Researcher</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  
+  </div>
+  <!-- /.container -->
 
 {% endblock content%}
