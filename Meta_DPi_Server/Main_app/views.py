@@ -6,6 +6,14 @@ import matplotlib.pyplot as plt
 from .forms import PDBForm,FileForm
 import os
 from django.conf import settings
+from prody import *
+import tempfile
+import Bio
+from Bio.PDB import PDBList
+import shutil
+import mechanize
+import requests
+import time
 
 
 def handle_uploaded_file(datafile):
@@ -31,16 +39,78 @@ def Meta_DPI():
     # I (evan) will do this 
     pass
 
+def Ispred_get(pdb,chain):
+    proteinname = pdb+'.'+chain
+    print(proteinname)
+    protein_ids = {}
+    br = mechanize.Browser()
+    br.set_handle_redirect(mechanize.HTTPRedirectHandler)
+    br.open("https://ispred4.biocomp.unibo.it/welcome/default/index")
+    # print(br.forms)
+    br.select_form(action="#")
+    FILENAME='./Temp/PDBs/{}_{}.pdb'.format(pdb, chain)
+    br.form.add_file(open(FILENAME), 'text/plain', FILENAME)
+    br.form.set_all_readonly(False)
+    br['ispred_chain'] = chain
+    req = br.submit()
+    html = str(br.response().readlines())
+    jobid = html.find('jobid')
+    jobid= html[jobid+6:jobid+42]
+    protein_ids[proteinname] = jobid
+    print(protein_ids)
+    for key in protein_ids:
+        url = "https://ispred4.biocomp.unibo.it/welcome/default/index"
+        br.open("https://ispred4.biocomp.unibo.it/ispred/default/searchjob")
+        br.select_form(action="#")
+        br['jobuuid'] = protein_ids[key]
+        br.submit(type='submit')
+        target_url = 'https://ispred4.biocomp.unibo.it/ispred/default/display_results.html?jobid={}'.format(jobid)
+        output_directory = './Temp/Ispred' 
+        # print(target_url)
+        result = None
+        while result is None:
+            try:
+                br.open(target_url)
+                r = requests.get('https://ispred4.biocomp.unibo.it/ispred/default/downloadjob?jobid={}'.format(jobid), stream=True,headers={'User-agent': 'Mozilla/5.0'})
+                if r.status_code == 200:
+                    with open("{}/{}_{}.txt".format(output_directory,pdb,chain), 'wb') as f:
+                        r.raw.decode_content = True
+                        shutil.copyfileobj(r.raw, f)
+                        result = 1
+                else:
+                    result = 1
+                    print(r.status_code)
+            except:
+                pass
+                
+       
+
 def Meta_DPI_Setup(pdb,chain):
+    
+    pathPDBFolder('./Temp/PDBs')
+    pdb_file = parsePDB(fetchPDB(f'{pdb}', compressed=False), chain=chain)
+    writePDB('{}.pdb'.format(pdb), pdb_file)
+    shutil.move('{}.pdb'.format(pdb), 'Temp/PDBs/{}_{}.pdb'.format(pdb,chain))
+    for filename in os.listdir('Temp/PDBs'):
+        if filename.endswith('gz'):
+            os.remove('Temp/PDBs/{}'.format(filename))
+    Ispred_get(pdb,chain)
+    # do something with pdb file...
+    # predition_score_get()
     # this is where we call the functions to perfrom data collection and RF/Logreg
-    predition_score_get()
-    Meta_DPI()
+    # Meta_DPI()
     # this is where we will prepare the results for output. 
+
     results = pd.DataFrame()
     results["col1"] = ["1","2",'3']
     results["col2"] = ["1","2",'3']
     results = results.to_html(index=False)
     tree = '/Users/evanedelstein/Desktop/Research_Evan/Raji_Summer2019_atom/Data_Files/CrossVal_logreg_RF/5foldCV/Crossvaltest47/Trees/Rftree_CV1.svg'
+
+    # delete all files in temp when done:
+    # for filename in os.listdir('Temp'):
+    # os.remove('Temp/{}'.format(filename))
+
     return results, tree
 
 def Parser(pdb):
@@ -51,7 +121,7 @@ def Parser(pdb):
         
         chain = None
         results,tree = Meta_DPI_Setup(pdb,chain)
-        context = {'results' : results,'tree' : tree}
+        context = {'pdb':pdb,'results' : results,'tree' : tree ,}
         return context
     elif len(pdb) == 6:
         
@@ -61,16 +131,16 @@ def Parser(pdb):
             pdb = pdb_chain[0]
             chain = pdb_chain[1]
             results,tree = Meta_DPI_Setup(pdb,chain)
-            context = {'results' : results,'tree' : tree}
+            context = {'pdb':pdb,'results' : results,'tree' : tree}
             return context
             
         if "." in pdb:
             
-            pdb_chain = pdb.split("_")
+            pdb_chain = pdb.split(".")
             pdb = pdb_chain[0]
             chain = pdb_chain[1]
             results,tree = Meta_DPI_Setup(pdb,chain)
-            context = {'results' : results,'tree' : tree}
+            context = {'pdb':pdb,'results' : results,'tree' : tree}
             return context
     else: 
         error_message = "PDb id is not known "
@@ -96,7 +166,7 @@ def home(request):
     
     form = PDBForm
     file_form = FileForm
-    return render(request,'Main_app/home.html',{'title':home ,'form': form ,'form2':file_form, 'error_message': error_message  } )
+    return render(request,'Main_app/home.html',{'title':home ,'form': form ,'form2':file_form ,'error_message': error_message  } )
 
 
     

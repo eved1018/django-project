@@ -1,26 +1,73 @@
 {% extends "Main_app/base.html"%}
+{% load crispy_forms_tags %}
 {% block content%}
-    <h1>Meta DPI Server Home </h1>
-    <form method="post", class="form-inline">
-        <div class="form-group mr-sm-4">
-            <label class="mr-sm-2" for="pdbform">PDB Input</label>
-            {% csrf_token %}
-            {{ form }}
-            
-          </div>
-        <input class="btn btn-primary mr-sm-2" type="submit" value="Submit">
-    </form>
-    <form method="post" enctype="multipart/form-data"class="form-inline">
-        <div class="form-group mr-sm-4">
-            <label class="mr-sm-2" for="pdbform">PDB Input</label>
-            {% csrf_token %}
-            {{form2 }}
+   <header>
+        <div class='jumbotron jumbotron-fluid height25p banner' style="background:transparent !important">
+            <div class='container 10p'>
+                <div class='contentBox h10 text-center'>
+                    <div>
+                        <h1>MetaDPI WebServer</h1>
+                        <p class='text-center'>
+                            This is a short tagline 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <input class="btn btn-primary mr-sm-2" type="submit" value="Submit">
-    </form>
+    </header>
+    <body>   
+      <div id="coverScreen"  class="LockOn">
+      </div>
+        <div class="container mt-5">
+            <div class="col-sm-12 col-lg-4 mr-auto ml-auto border p-4">
+                <form method="post" >
+                  <div class="form-group">
+                    <label><strong>PDB Input</strong></label>
+                   
+                        {% csrf_token %}
+                        {{ form }}
+                  </div>
+                  <div class="form-group">
+                    <button id='btn1' class="btn btn-primary btn-block" type="submit">Submit</button>
+                   
+                  </div>
+                </form>
+              </div>
+              <br>
+              <br>
+
+            <div class="col-sm-12 col-lg-4 mr-auto ml-auto border p-4">
+                <form method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label><strong>Upload Files</strong></label>
+                    <div class="custom-file">
+                        {% csrf_token %}
+                        {{form2}}
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button id='submit-btn' class="btn btn-primary btn-block" type="submit">Submit</button>
+                    
+                  </div>
+                </form>
+            </div>
+            
+            
+                        
+                    
+            </div>
+            </div>
+        </div> 
+   
+      
+
+    </body>
     
-     
+
+
+
     {{ message }}
 
 {% endblock content%}
-
