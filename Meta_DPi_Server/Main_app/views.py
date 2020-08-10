@@ -176,7 +176,12 @@ def Results(request):
     
 
 def About(request):
+
     return render(request,'Main_app/about.html')
+    
+def Refrences(request):
+    
+    return render(request,'Main_app/Refrences.html')
     
 
 
