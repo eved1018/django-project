@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '78df=&n+-opza5x#3%7t)xqkqe4ixhvym2r2#%)f=djjd=sahc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['metadpiapp.herokuapp.com/']
 
 
 # Application definition
