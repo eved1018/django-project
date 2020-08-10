@@ -1,1 +1,1 @@
-web: gunicorn Meta_DPi_Server/wsgi.py
+web: gunicorn Meta_DPi_Server.wsgi
