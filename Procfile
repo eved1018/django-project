@@ -1,1 +1,1 @@
-web: gunicorn django_project.wsgi
+web: gunicorn Meta_`DPi_Server.Meta_DPi_Server.wsgi`
