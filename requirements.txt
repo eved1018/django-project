@@ -16,7 +16,7 @@ keyrings.alt==3.4.0
 kiwisolver==1.2.0
 MarkupSafe==1.1.1
 matplotlib==3.3.0
-mechanize==0.4.5
+mechanize==0.4.6
 mpld3==0.5.1
 numpy==1.19.1
 pandas==1.1.0
